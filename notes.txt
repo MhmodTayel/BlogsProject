@@ -1,0 +1,5 @@
+/// install express mongoose jsonwebtoken bcryptjs
+
+/// create index.js => express => listen => middlewares
+
+todo handle 404 page (send 404.html page)
