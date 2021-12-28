@@ -12,15 +12,15 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 10,
-      maxlength: 20,
+      maxlength: 50,
     },
     img: {
       data: Buffer,
       contentType: String,
-      required: true,
     },
     author: {
       type: String,
+      required: true,
     },
     tags: {
       type: [

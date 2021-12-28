@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    fullname: {
+    fullName: {
       type: String,
       required: true,
       minlength: 10,
@@ -33,12 +33,11 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
       minlength: 10,
-      maxlength: 50,
+      maxlength: 100,
     },
     img: {
       data: Buffer,
       contentType: String,
-      required: true,
     },
   },
   {

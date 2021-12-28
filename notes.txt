@@ -4,6 +4,10 @@
 
 todo handle 404 page (send 404.html page)
 todo change min and max length of blog echema
-todo test storing of images in database
 todo create index for tags and autors
 todo backend validation
+todo edit creation of blog (from user/blog route)
+todo how to send an image to database from form submission
+todo test storing of images in database
+todo author field filld automatic when logged in
+todo implement dynamic routing

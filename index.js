@@ -1,11 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const blogsRoutes = require("./routes/blog");
+const usersRoutes = require("./routes/user");
+const authMiddleware = require("./middlewares/auth");
 const app = express();
 
+process.env.SECRET = "fbsbMRFBrbweSB818!@$^$(@)%sfbsb";
 mongoose.connect("mongodb://localhost:27017/blogsApp");
 
 app.use(express.json());
+app.use("/users", usersRoutes);
+app.use(authMiddleware);
+app.use("/", blogsRoutes);
 
 app.use("*", (req, res) => {
   res.status(404).end();
