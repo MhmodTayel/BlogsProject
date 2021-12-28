@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost:27017/blogsApp");
 
 app.use(express.json());
 app.use("/users", usersRoutes);
-app.use(authMiddleware);
+// app.use(authMiddleware);
 app.use("/", blogsRoutes);
 
 app.use("*", (req, res) => {

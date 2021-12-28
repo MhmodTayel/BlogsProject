@@ -11,3 +11,6 @@ todo how to send an image to database from form submission
 todo test storing of images in database
 todo author field filld automatic when logged in
 todo implement dynamic routing
+todo attach blog ID to the blog element in html to be deleted after clicking the delete button 
+todo put the blog id in header not in params to delete or update
+todo every user can update his own profile only
