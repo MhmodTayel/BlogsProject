@@ -1,9 +1,11 @@
 const express = require("express");
+var cors = require("cors");
 const mongoose = require("mongoose");
 const blogsRoutes = require("./routes/blog");
 const usersRoutes = require("./routes/user");
 const authMiddleware = require("./middlewares/auth");
 const app = express();
+app.use(cors());
 
 process.env.SECRET = "fbsbMRFBrbweSB818!@$^$(@)%sfbsb";
 mongoose.connect("mongodb://localhost:27017/blogsApp");
