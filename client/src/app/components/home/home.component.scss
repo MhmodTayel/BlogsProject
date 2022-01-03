@@ -1,0 +1,86 @@
+.example-card {
+  margin: 20px;
+  max-width: 400px;
+  transition: 0.2s;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+mat-card-title {
+  // max-width: 360px;
+  line-height: 1.2;
+}
+
+.grid {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  mat-card-actions.heart {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #ddd;
+
+    cursor: pointer;
+    i {
+      transition: 0.2s;
+    }
+    &:hover i {
+      color: red;
+    }
+  }
+}
+
+mat-card-header {
+  position: relative;
+  mat-card-actions {
+    position: absolute;
+    right: 1rem;
+    top: -10px;
+  }
+}
+
+.follow {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  &:hover {
+    color: #15aabf;
+  }
+}
+
+mat-card-content {
+  mat-card-title {
+    display: -webkit-box;
+    max-width: 380px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  p {
+    // text-overflow: ellipsis;
+    // overflow: hidden;
+    // white-space: nowrap;
+    display: -webkit-box;
+    max-width: 380px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    &.date {
+      color: gray;
+      font-size: 14px;
+    }
+  }
+}

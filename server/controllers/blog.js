@@ -1,6 +1,6 @@
 const Blog = require("../models/blog");
 
-const find = () => Blog.find({});
+const find = () => Blog.find({}).populate("author");
 const create = (blog) => Blog.create(blog);
 const deleteDoc = (id) => {
   return Blog.deleteOne({ id });

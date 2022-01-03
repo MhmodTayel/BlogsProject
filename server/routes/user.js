@@ -8,11 +8,10 @@ router.get("/", (req, res) => {
     .catch((e) => next(e));
 });
 
-router.post("/", (req, res, next) => {
+router.post("/register", (req, res, next) => {
   const user = req.body;
-  create(user)
-    .then((doc) => res.json(doc))
-    .catch((e) => next(e));
+  create(user).then((doc) => res.json(doc))
+  .catch((e) => next(e));
 });
 
 router.post("/login", async (req, res, next) => {

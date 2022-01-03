@@ -1,13 +1,17 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
   if (req.url == "/" && req.method == "GET") {
     next();
   } else {
     const { authorization } = req.headers;
-    const payload = jwt.verify(authorization, process.env.SECRET);
+    
+
+    const payload = await jwt.verify(authorization, process.env.SECRET);
+
     User.findOne({ username: payload.username }).then((user) => {
       req.user = user;
+      
       next();
     });
   }

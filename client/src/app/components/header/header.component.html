@@ -1,0 +1,8 @@
+<mat-toolbar color="primary"
+  ><span>My Blog</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/home">Home</a>
+  <a mat-button routerLink="/create" *ngIf="checkLogging()">Create Blog</a>
+  <a mat-button routerLink="/login" *ngIf="!checkLogging()">Login</a>
+  <a mat-button routerLink="/register" *ngIf="!checkLogging()">Register</a>
+</mat-toolbar>

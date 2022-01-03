@@ -1,5 +1,25 @@
-<textarea rows="10" [(ngModel)]="enteredValue"></textarea>
-<hr />
-<button (click)="onAddBlog(enteredValue)">Save Blog</button>
+<mat-card *ngIf="checkLogging()">
+  <form class="example-form" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Blog Title</mat-label>
+      <input
+        matInput
+        placeholder="Ex. This is the title of my Blog post"
+        name="title"
+        formControlName="title"
+      />
+    </mat-form-field>
 
-<p>{{ newBlog }}</p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Blog body</mat-label>
+      <textarea
+        matInput
+        placeholder="Ex. It makes me feel..."
+        rows="10"
+        name="content"
+        formControlName="body"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Create Blog</button>
+  </form>
+</mat-card>

@@ -9,9 +9,10 @@ router.get("/", (req, res, next) => {
     .catch((e) => next(e));
 });
 
-router.post("/", (req, res, next) => {
+router.post("/create", (req, res, next) => {
   const blog = req.body;
-  blog.author = req.user.username;
+  blog.author = req.user._id;
+  // blog.author = "61d2fc7e0f0209f812ed2518";
   create(blog)
     .then((doc) => res.json(doc))
     .catch((e) => next(e));
