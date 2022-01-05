@@ -19,10 +19,12 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component'
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { BlogComponent } from './components/blogs/blog/blog.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     MatIconModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true } ],
   bootstrap: [AppComponent]

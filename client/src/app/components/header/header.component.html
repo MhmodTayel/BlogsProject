@@ -5,4 +5,7 @@
   <a mat-button routerLink="/create" *ngIf="checkLogging()">Create Blog</a>
   <a mat-button routerLink="/login" *ngIf="!checkLogging()">Login</a>
   <a mat-button routerLink="/register" *ngIf="!checkLogging()">Register</a>
+  <a mat-button routerLink="/login" *ngIf="checkLogging()" (click)="logout()"
+    >Logout</a
+  >
 </mat-toolbar>

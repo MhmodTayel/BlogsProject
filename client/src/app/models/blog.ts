@@ -1,12 +1,14 @@
 
 export class Blog {
   _id:string=''
+  id:number=0
   author:any={};
   title: string ='';
   body: string= '';
   tags:string[]=[];
   updatedAt:Date =new Date();
   createdAt:Date =new Date();
+  image:string=""
 }
 
 /*

@@ -10,6 +10,21 @@
       />
     </mat-form-field>
 
+    <div>
+      <button mat-stroked-button type="button" class="imageBtn" (click)="filePicker.click()">
+        Pick Image
+      </button>
+      <input type="file" #filePicker (change)="onImagePicked($event)" />
+    </div>
+    <div
+      class="image-preview"
+      *ngIf="
+        imagePreview !== '' && imagePreview && createForm.get('image').valid
+      "
+    >
+      <img [src]="imagePreview" [alt]="createForm.value.title" />
+    </div>
+
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Blog body</mat-label>
       <textarea

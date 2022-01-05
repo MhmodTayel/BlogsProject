@@ -3,7 +3,7 @@
   max-width: 400px;
   transition: 0.2s;
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-2px);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 }
@@ -49,7 +49,9 @@ mat-card-header {
     top: -10px;
   }
 }
-
+.mainImg {
+  cursor: pointer;
+}
 .follow {
   margin-left: 10px;
   cursor: pointer;
@@ -82,5 +84,61 @@ mat-card-content {
       color: gray;
       font-size: 14px;
     }
+  }
+}
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 120px;
+  button {
+    transform: scale(0.7) !important;
+
+    &.delete {
+      background: rgb(235, 38, 38);
+    }
+    &.love {
+      &:hover {
+        background: rgb(235, 38, 38);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.share {
+  align-self: flex-end !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    transform: scale(0.7);
   }
 }

@@ -13,7 +13,15 @@ export class BlogApiService {
    return this._apiService.get(url);
   }
 
-  create(body:string){
+  getById(url:string){
+   return this._apiService.get(url);
+  }
+
+  create(body:FormData){
    return this._apiService.post('/create',body);
+  }
+
+  delete(id:any){
+   return this._apiService.delete(id);
   }
 }

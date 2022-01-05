@@ -14,6 +14,7 @@ export class ApiService {
   {
     return this._http.get(`${environment.apiURL}${url}` );
   }
+ 
 
   post(url:string,body:any)
   {
@@ -25,8 +26,8 @@ export class ApiService {
     return this._http.put(`${environment.apiURL}${url}`,body);
   }
   
-  delete(url:string)
+  delete(id:any)
   {
-    return this._http.delete(`${environment.apiURL}${url}`);
+    return this._http.delete(`${environment.apiURL}/${id}`);
   }
 }

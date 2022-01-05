@@ -10,8 +10,9 @@ router.get("/", (req, res) => {
 
 router.post("/register", (req, res, next) => {
   const user = req.body;
-  create(user).then((doc) => res.json(doc))
-  .catch((e) => next(e));
+  create(user)
+    .then((doc) => res.json(doc))
+    .catch((e) => next(e));
 });
 
 router.post("/login", async (req, res, next) => {

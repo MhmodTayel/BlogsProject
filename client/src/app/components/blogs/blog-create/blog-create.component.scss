@@ -16,3 +16,19 @@ mat-card {
 // .example-full-width {
 //   width: 100%;
 // }
+.imageBtn {
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 8rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}

@@ -14,9 +14,12 @@ const blogSchema = new mongoose.Schema(
       minlength: 10,
       maxlength: 50,
     },
-    img: {
-      data: Buffer,
-      contentType: String,
+    image: {
+      type:String
+    },
+    id: {
+      type: Number,
+      default: 0,
     },
     author: {
       type: mongoose.SchemaTypes.ObjectId,

@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+.example-header-image {
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.mini-spacer {
+  padding: 40px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex !important;
+  margin-top: 20px;
+}
+mat-card-content {
+  mat-card-title {
+    font-weight: 600;
+    margin: 20px 0 15px;
+    line-height: 36px;
+    font-size: 36px;
+    color: #3e4555;
+    font-family: "Montserrat";
+  }
+  p {
+    // color: #8d97ad;
+    font-weight: 300;
+    font-family: "Montserrat";
+    font-size: 1.2rem;
+    line-height: 2;
+    text-align: left;
+  }
+}
+.delete {
+  background: transparent !important;
+  border: none !important;
+  i {
+    font-size: 25px !important;
+    color: rgb(243, 65, 65) !important;
+    cursor: pointer !important;
+  }
+}
+mat-card-actions.heart {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #ddd;
+
+  cursor: pointer;
+  i {
+    transition: 0.2s;
+  }
+  &:hover i {
+    color: red;
+  }
+}
+
+mat-card-header {
+  position: relative;
+  mat-card-actions {
+    position: absolute;
+    right: 1rem;
+    top: -10px;
+  }
+}
+.mainImg {
+  cursor: auto;
+  max-width: 900px;
+  border-radius: 5px;
+  height: auto;
+  align-self: center;
+}
+
+.follow {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  &:hover {
+    color: #15aabf;
+  }
+}
+
+mat-card-content {
+  p {
+    &.date {
+      color: gray;
+      font-size: 14px;
+    }
+  }
+}
