@@ -1,0 +1,51 @@
+<mat-card *ngIf="checkLogging()">
+  <form class="example-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Blog Title</mat-label>
+      <input
+        matInput
+        placeholder="Ex. This is the title of my Blog post"
+        name="title"
+        formControlName="title"
+      />
+    </mat-form-field>
+
+    <div>
+      <button
+        mat-stroked-button
+        type="button"
+        class="imageBtn"
+        (click)="filePicker.click()"
+      >
+        Pick Image
+      </button>
+      <input type="file" #filePicker (change)="onImagePicked($event)" />
+    </div>
+    <div
+      class="image-preview"
+      *ngIf="imagePreview !== '' && imagePreview && editForm.get('image').valid"
+    >
+      <img [src]="imagePreview" [alt]="editForm.value.title" />
+    </div>
+    <div
+      class="image-preview"
+      *ngIf="
+       !(imagePreview !== '' && imagePreview && editForm.get('image').valid)
+      "
+    >
+      <img [src]="receviedImg" [alt]="editForm.value.title" />
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Blog body</mat-label>
+      <textarea
+        matInput
+        placeholder="Ex. It makes me feel..."
+        rows="10"
+        name="content"
+        formControlName="body"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Update Blog</button>
+  </form>
+</mat-card>

@@ -2,6 +2,7 @@ const Blog = require("../models/blog");
 const User = require("../models/user");
 
 const authorizeBlogMW = async (req, res, next) => {
+  console.log('from authorizeBlogMW');
   const userId = req.user._id.toString();
   const username = req.user.username;
 

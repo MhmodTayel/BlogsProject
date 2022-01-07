@@ -21,9 +21,10 @@ export class ApiService {
     return this._http.post(`${environment.apiURL}${url}`,body);
   }
   
-  put(url:string,body:any)
+  patch(url:string,body:object)
   {
-    return this._http.put(`${environment.apiURL}${url}`,body);
+ 
+    return this._http.patch(`${environment.apiURL}${url}`,body);
   }
   
   delete(id:any)

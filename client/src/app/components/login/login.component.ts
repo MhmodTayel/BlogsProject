@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   durationInSeconds = 3;
-
+  errorMsg:string=''
   constructor(private fb: FormBuilder, private _userService:UserService,private _snackBar: MatSnackBar,private router: Router ) { }
 
   loginForm:FormGroup = this.fb.group({
@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openSnackBar() {
+  successSnackBar() {
     this._snackBar.open('You logged in successfuly','ok', {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+  errorSnackBar() {
+    this._snackBar.open(this.errorMsg,'ok', {
       duration: this.durationInSeconds * 1000,
     });
   }
@@ -36,13 +41,13 @@ onSubmit(){
     {
       localStorage.setItem('token',JSON.stringify(res))
       console.log(res)
-       this.openSnackBar();
+       this.successSnackBar();
 
        setTimeout(() => {
         this.router.navigate(['home'])
        }, 1000);
       },
-      ()=>{})
+      (err)=>{this.errorMsg = err.error; this.errorSnackBar()})
   } 
 }
 

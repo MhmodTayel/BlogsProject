@@ -21,7 +21,7 @@ app.use("*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ error: err });
+  res.status(403).json( err);
 });
 
 app.listen(3000, () => {

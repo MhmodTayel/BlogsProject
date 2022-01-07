@@ -23,7 +23,8 @@ export class BlogComponent implements OnInit {
       
      this._blogApiService.getById(`/${params.get('id')}`).subscribe(
        (res:any)=>{
-          this.blog = res   
+          this.blog = res 
+            
      });
 
     });

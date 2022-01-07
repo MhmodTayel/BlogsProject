@@ -25,6 +25,9 @@ import {ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { BlogComponent } from './components/blogs/blog/blog.component';
+import { FollowingComponent } from './components/following/following.component';
+import { BlogEditComponent } from './components/blogs/blog-edit/blog-edit.component';
+
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { BlogComponent } from './components/blogs/blog/blog.component';
     RegisterComponent,
     LoginComponent,
     BlogComponent,
-  ],
+    FollowingComponent,
+    BlogEditComponent,
+  ]
+  ,
   imports: [
     BrowserModule,
     AppRoutingModule,

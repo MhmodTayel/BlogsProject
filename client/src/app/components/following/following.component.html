@@ -29,11 +29,9 @@
           </button>
           <button
             *ngIf="checkLogging() && !hasBlog(blog)"
-            (click)="likeBlog(blog.id)"
             mat-fab
             color="basic"
             class="love"
-            [class.liked] = "isLike(blog.id)"
             aria-label="Example icon button with a heart icon"
           >
             <mat-icon>favorite</mat-icon>
@@ -43,7 +41,6 @@
             color="primary"
             *ngIf="hasBlog(blog)"
             aria-label="Example icon button with a delete icon"
-            routerLink="/edit/{{blog.id}}"
           >
             <mat-icon>edit</mat-icon>
           </button>
@@ -57,7 +54,6 @@
           >
             <mat-icon>delete</mat-icon>
           </button>
-
         </div>
       </mat-card-actions>
     </mat-card-header>

@@ -3,16 +3,17 @@ const jwt = require("jsonwebtoken");
 
 const find = () => User.find({});
 const create = (user) => {
-  console.log(user);
+  
   return User.create(user);
 };
 
-const login = async ({ username, password }) => {
+const login = async ({ username, password },next) => {
   const user = await User.findOne({ username });
+  if(!user) {next('invalid user'); return;}
   const isValid = await user.comparePassword(password);
 
   if (!isValid) {
-    throw "UN_AUTH";
+    next('Worng Password'); return;
   }
   return jwt.sign(
     {
@@ -24,4 +25,14 @@ const login = async ({ username, password }) => {
   );
 };
 
-module.exports = { find, create, login };
+const update = (_id, username) =>
+  User.updateOne({ _id }, { $push: { following: username } });
+
+const updateLike = (_id, blogId) =>
+  User.updateOne({ _id }, { $push: { likes: blogId } });
+
+
+const getFollowing = (_id) => User.findOne({ _id }, { following: 1 });
+const getLikes = (_id) => User.findOne({ _id }, { likes: 1 });
+
+module.exports = { find, create, login, update, getFollowing,updateLike,getLikes };

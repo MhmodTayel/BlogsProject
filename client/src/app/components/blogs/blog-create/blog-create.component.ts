@@ -34,15 +34,20 @@ export class BlogCreateComponent {
   }
 
   onImagePicked(event: any) {
+    
     const file = event.target.files[0];
-    console.log(file);
+   
     this.createForm.patchValue({ image: file });
     this.createForm.get('image').updateValueAndValidity();
+
+
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
+      
     };
     reader.readAsDataURL(file);
+    
   }
 
   checkLogging() {
@@ -56,6 +61,7 @@ export class BlogCreateComponent {
   onSubmit() {
     if (this.createForm.valid) {
       const postData = new FormData();
+
       postData.append('title', this.createForm.value.title);
       postData.append('body', this.createForm.value.body);
       postData.append(

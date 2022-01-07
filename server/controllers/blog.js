@@ -6,5 +6,13 @@ const create = (blog) => Blog.create(blog);
 const deleteDoc = (_id) => {
   return Blog.deleteOne({ _id });
 };
-const update = (id, body) => Blog.updateOne({ id }, body);
-module.exports = { find, create, deleteDoc, update, findById };
+const update = (_id, body) => Blog.updateOne({ _id }, body);
+findBlogsByUserId = (_id) => Blog.find({ author: _id }).populate("author");
+module.exports = {
+  find,
+  create,
+  deleteDoc,
+  update,
+  findById,
+  findBlogsByUserId,
+};

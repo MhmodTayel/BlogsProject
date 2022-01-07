@@ -73,6 +73,11 @@ export class RegisterComponent implements OnInit {
       duration: this.durationInSeconds * 1000,
     });
   }
+  errorSnackBar(username:string) {
+    this._snackBar.open(`${username} already registerd`, 'ok', {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -81,7 +86,7 @@ export class RegisterComponent implements OnInit {
           this.openSnackBar();
           this.router.navigate(['login']);
         },
-        () => {}
+        (err) => {this.errorSnackBar(err.error.keyValue.username)}
       );
     }
   }

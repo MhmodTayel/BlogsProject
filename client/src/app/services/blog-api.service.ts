@@ -21,7 +21,16 @@ export class BlogApiService {
    return this._apiService.post('/create',body);
   }
 
+  update(id:string,body:FormData){
+   return this._apiService.patch(`/${id}`,body);
+  }
+
   delete(id:any){
    return this._apiService.delete(id);
+  }
+
+
+  getBlogByUserId(id:any){
+   return this._apiService.get(`/following/${id}`);
   }
 }

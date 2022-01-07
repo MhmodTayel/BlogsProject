@@ -5,6 +5,7 @@ const router = express.Router();
 // Handle IMG upload and store //
 
 const multer = require("multer");
+
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
@@ -23,7 +24,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // ---------------------------- //
 
-
 const authorizeBlogMW = require("../middlewares/blogMW");
 const {
   find,
@@ -31,12 +31,20 @@ const {
   deleteDoc,
   update,
   findById,
+  findBlogsByUserId,
 } = require("../controllers/blog");
 
 const Blog = require("../models/blog");
 
 router.get("/", (req, res, next) => {
   find()
+    .then((doc) => res.json(doc))
+    .catch((e) => next(e));
+});
+
+router.get("/following/:id", (req, res, next) => {
+  const id = req.params.id;
+  findBlogsByUserId(id)
     .then((doc) => res.json(doc))
     .catch((e) => next(e));
 });
@@ -70,10 +78,13 @@ router.delete("/:id", authorizeBlogMW, (req, res, next) => {
     .catch((e) => next(e));
 });
 
-router.patch("/:id", authorizeBlogMW, (req, res, next) => {
+router.patch("/:id", authorizeBlogMW,upload.single("image"), (req, res, next) => {
+  console.log('from route');
   const id = req.params.id;
-  const body = req.body;
-  update(id, body)
+  const blog = req.body;
+  blog.image = req.file?.path;
+
+  update(id, blog)
     .then((doc) => res.json(doc))
     .catch((e) => next(e));
 });
