@@ -8,6 +8,23 @@
         name="title"
         formControlName="title"
       />
+      <mat-hint *ngIf="editForm.controls['title'].errors">
+        <mat-hint
+          *ngIf="
+            editForm.controls['title'].errors['required'] &&
+            editForm.touched
+          "
+          >required</mat-hint
+        >
+        <mat-hint
+          *ngIf="editForm.controls['title'].errors['minlength']"
+          >minimum length is 3</mat-hint
+        >
+        <mat-hint
+          *ngIf="editForm.controls['title'].errors['maxlength']"
+          >maximum length is 15</mat-hint
+        >
+      </mat-hint>
     </mat-form-field>
 
     <div>
@@ -21,12 +38,16 @@
       </button>
       <input type="file" #filePicker (change)="onImagePicked($event)" />
     </div>
+
+    <!--  -->
     <div
       class="image-preview"
       *ngIf="imagePreview !== '' && imagePreview && editForm.get('image').valid"
     >
       <img [src]="imagePreview" [alt]="editForm.value.title" />
     </div>
+
+
     <div
       class="image-preview"
       *ngIf="
@@ -35,6 +56,9 @@
     >
       <img [src]="receviedImg" [alt]="editForm.value.title" />
     </div>
+<!--  -->
+
+
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Blog body</mat-label>
@@ -45,6 +69,23 @@
         name="content"
         formControlName="body"
       ></textarea>
+      <mat-hint *ngIf="editForm.controls['body'].errors">
+        <mat-hint
+          *ngIf="
+            editForm.controls['body'].errors['required'] &&
+            editForm.touched
+          "
+          >required</mat-hint
+        >
+        <mat-hint
+          *ngIf="editForm.controls['body'].errors['minlength']"
+          >minimum length is 3</mat-hint
+        >
+        <mat-hint
+          *ngIf="editForm.controls['body'].errors['maxlength']"
+          >maximum length is 15</mat-hint
+        >
+      </mat-hint>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Update Blog</button>
   </form>

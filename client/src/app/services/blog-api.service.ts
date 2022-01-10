@@ -24,7 +24,9 @@ export class BlogApiService {
   update(id:string,body:FormData){
    return this._apiService.patch(`/${id}`,body);
   }
-
+  getByTitle(url: string){
+    return this._apiService.get(url);
+  }
   delete(id:any){
    return this._apiService.delete(id);
   }

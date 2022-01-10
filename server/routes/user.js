@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const upload = require('../middlewares/imgMW')
+
 const {
   find,
   create,
@@ -11,7 +13,14 @@ const {
 } = require("../controllers/user");
 
 router.get("/", (req, res) => {
-  find()
+  find({})
+    .then((doc) => res.json(doc))
+    .catch((e) => next(e));
+});
+
+router.get("/profile/:username", (req, res) => {
+  const username = req.params.username
+  find({username})
     .then((doc) => res.json(doc))
     .catch((e) => next(e));
 });
@@ -30,8 +39,9 @@ router.get("/likes/:id", (req, res) => {
     .catch((e) => next(e));
 });
 
-router.post("/register", (req, res, next) => {
+router.post("/register",upload.single("image"), (req, res, next) => {
   const user = req.body;
+  user.image = req.file?.path;
   create(user)
     .then((doc) => res.json(doc))
     .catch((e) => next(e));

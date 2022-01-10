@@ -32,3 +32,19 @@ input[type="file"] {
 .image-preview img {
   height: 100%;
 }
+
+ul {
+  padding-left: 0 !important;
+}
+
+::ng-deep snack-bar-container.customSnackBar {
+  background: rgb(56, 173, 33);
+}
+
+::ng-deep .customSnackBar .mat-simple-snackbar {
+  color: #fff;
+}
+
+::ng-deep .customSnackBar .mat-simple-snackbar-action{
+  color: #fff;
+}

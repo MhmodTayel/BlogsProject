@@ -10,6 +10,23 @@
             placeholder="Ex. userName98"
             formControlName="username"
           />
+          <mat-hint *ngIf="loginForm.controls['username'].errors">
+            <mat-hint
+              *ngIf="
+                loginForm.controls['username'].errors['required'] &&
+                loginForm.touched
+              "
+              >required</mat-hint
+            >
+            <mat-hint
+              *ngIf="loginForm.controls['username'].errors['minlength']"
+              >minimum length is 5</mat-hint
+            >
+            <mat-hint
+              *ngIf="loginForm.controls['username'].errors['maxlength']"
+              >maximum length is 20</mat-hint
+            >
+          </mat-hint>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill" class="width-100">
@@ -28,6 +45,23 @@
           >
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
+          <mat-hint *ngIf="loginForm.controls['password'].errors">
+            <mat-hint
+              *ngIf="
+                loginForm.controls['password'].errors['required'] &&
+                loginForm.touched
+              "
+              >required</mat-hint
+            >
+            <mat-hint
+              *ngIf="loginForm.controls['password'].errors['minlength']"
+              >minimum length is 3</mat-hint
+            >
+            <mat-hint
+              *ngIf="loginForm.controls['password'].errors['maxlength']"
+              >maximum length is 15</mat-hint
+            >
+          </mat-hint>
         </mat-form-field>
 
         <br />

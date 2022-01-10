@@ -1,12 +1,12 @@
 <mat-toolbar color="primary"
-  ><span>My Blog</span>
+  ><span routerLink="/home"><span style="color: rgb(245, 232, 47);">MT</span> Blog</span>
   <span class="spacer"></span>
   <a mat-button routerLink="/home">Home</a>
   <a mat-button routerLink="/create" *ngIf="checkLogging()">Create Blog</a>
   <a mat-button routerLink="/login" *ngIf="!checkLogging()">Login</a>
   <a mat-button routerLink="/register" *ngIf="!checkLogging()">Register</a>
   <a mat-button routerLink="/following" *ngIf="checkLogging()">Following</a>
-  <a mat-button routerLink="/home" *ngIf="checkLogging()">{{ currentUser }}</a>
+  <a mat-button routerLink="/home" *ngIf="checkLogging()" routerLink="/profile/{{currentUser}}" routerLinkActive="router-link-active" >{{ currentUser }}</a>
   <a mat-button routerLink="/login" *ngIf="checkLogging()" (click)="logout()"
     >Logout</a
   >

@@ -31,3 +31,53 @@ mat-grid-tile {
   font-size: 40px;
   font-weight: 100;
 }
+.imageBtn {
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  position: relative;
+  height: 8rem;
+  margin: .6rem 0;
+  width: 8rem;
+  overflow: hidden;
+  // border-radius: 50%;
+}
+
+.image-preview img {
+  position: absolute;
+  height: 100%;
+  // width: 100%;
+  // border-radius: 50%;
+}
+
+
+
+::ng-deep snack-bar-container.successCustomSnackBar {
+  background: rgb(56, 173, 33);
+}
+
+::ng-deep .successCustomSnackBar .mat-simple-snackbar {
+  color: #fff;
+}
+
+::ng-deep .successCustomSnackBar .mat-simple-snackbar-action{
+  color: #fff;
+}
+
+
+::ng-deep snack-bar-container.failCustomSnackBar {
+  background: rgb(190, 34, 29);
+}
+
+::ng-deep .failCustomSnackBar .mat-simple-snackbar {
+  color: #fff;
+}
+
+::ng-deep .failCustomSnackBar .mat-simple-snackbar-action{
+  color: #fff;
+}

@@ -1,4 +1,6 @@
 <div class="grid">
+  <div *ngIf="blogs.length == 0" class="noBlogs">there is no blogs right now</div>
+
   <mat-card class="example-card" *ngFor="let blog of getSortData()">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>

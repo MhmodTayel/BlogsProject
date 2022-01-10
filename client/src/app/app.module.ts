@@ -19,14 +19,20 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component'
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
+
+import {MatChipsModule} from '@angular/material/chips'
+import {MatPaginatorModule} from '@angular/material/paginator'
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { BlogComponent } from './components/blogs/blog/blog.component';
 import { FollowingComponent } from './components/following/following.component';
 import { BlogEditComponent } from './components/blogs/blog-edit/blog-edit.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -41,6 +47,8 @@ import { BlogEditComponent } from './components/blogs/blog-edit/blog-edit.compon
     BlogComponent,
     FollowingComponent,
     BlogEditComponent,
+    NotFoundComponent,
+    ProfileComponent,
   ]
   ,
   imports: [
@@ -61,7 +69,11 @@ import { BlogEditComponent } from './components/blogs/blog-edit/blog-edit.compon
     MatRadioModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true } ],
   bootstrap: [AppComponent]

@@ -29,13 +29,9 @@ export class BlogEditComponent implements OnInit{
   ngOnInit(): void {
     this._ativatedRoute.paramMap.subscribe(params=>{
 
-      
       this._blogApiService.getById(`/${params.get('id')}`).subscribe(
         (res:any)=>{
-               // this.students.push(response.Data);   
-              //  this.blog =res;
               this.editForm.patchValue({title: res.title, body: res.body})
-               console.log(res);
                this.receviedImg = `http://localhost:3000/${res.image}`
               this._id = res._id
               this.ID = res.id
@@ -46,8 +42,8 @@ export class BlogEditComponent implements OnInit{
   }
 
   editForm: any = this.fb.group({
-    title: ['', Validators.required],
-    body: ['', Validators.required],
+    title: ['', Validators.required,Validators.minLength(5),Validators.maxLength(50)],
+    body: ['', Validators.required,Validators.minLength(50),Validators.maxLength(500)],
     image: ['', ],
   });
 

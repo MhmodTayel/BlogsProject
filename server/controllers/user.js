@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
-const find = () => User.find({});
+const find = (query) => User.find(query);
 const create = (user) => {
   
   return User.create(user);

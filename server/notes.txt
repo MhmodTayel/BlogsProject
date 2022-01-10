@@ -2,15 +2,54 @@
 
 /// create index.js => express => listen => middlewares
 
-todo handle 404 page (send 404.html page)
-todo change min and max length of blog echema
-todo create index for tags and autors
-todo backend validation
-todo edit creation of blog (from user/blog route)
-todo how to send an image to database from form submission
-todo test storing of images in database
-todo author field filld automatic when logged in
-todo implement dynamic routing
-todo attach blog ID to the blog element in html to be deleted after clicking the delete button 
-todo put the blog id in header not in params to delete or update
-todo every user can update his own profile only
+///todo handle 404 page (send 404.html page)
+///todo change min and max length of blog echema
+///todo backend validation
+///todo edit creation of blog (from user/blog route)
+///todo how to send an image to database from form submission
+///todo test storing of images in database
+///todo author field filld automatic when logged in
+///todo implement dynamic routing
+///todo attach blog ID to the blog element in html to be deleted after clicking the delete button 
+///todo put the blog id in header not in params to delete or update
+
+
+
+///todo add pagination 
+///todo add photo to user while registration
+todo fix like and follow and profile link apperance
+todo add tags to blogs and filter by tags
+///todo add validation and hints to blogs create and edit
+///todo add spinnnig loading to load photos
+todo try to add popup for delete
+todo try to style snackbar 
+//! Implementing Google Authentication With Node JS
+
+
+
+
+todo add subject to make changes to other components
+todo handle follow button
+///todo add profile page for each user
+todo add validation pattern message
+todo 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

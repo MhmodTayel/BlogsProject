@@ -31,3 +31,29 @@ mat-grid-tile {
   font-size: 40px;
   font-weight: 100;
 }
+
+
+::ng-deep snack-bar-container.successCustomSnackBar {
+  background: rgb(56, 173, 33);
+}
+
+::ng-deep .successCustomSnackBar .mat-simple-snackbar {
+  color: #fff;
+}
+
+::ng-deep .successCustomSnackBar .mat-simple-snackbar-action{
+  color: #fff;
+}
+
+
+::ng-deep snack-bar-container.failCustomSnackBar {
+  background: rgb(190, 34, 29);
+}
+
+::ng-deep .failCustomSnackBar .mat-simple-snackbar {
+  color: #fff;
+}
+
+::ng-deep .failCustomSnackBar .mat-simple-snackbar-action{
+  color: #fff;
+}

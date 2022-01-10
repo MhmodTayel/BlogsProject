@@ -1,11 +1,28 @@
-<div class="grid">
+<mat-spinner *ngIf="loading" class="loading"></mat-spinner>
+<form class="example-form" *ngIf="!loading">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search</mat-label>
+    
+    <input type="text" matInput #searchInput placeholder="Title, Author, Tag">
+    <mat-icon matSuffix (click)="search(searchInput.value)">search</mat-icon>
+  </mat-form-field>
+  <mat-chip-list aria-label="Fish selection">
+    <mat-chip *ngFor="let tag of tags" #{{tag}} (click)="getBlogsByTag(tag)"  >#{{tag}}</mat-chip>
+  </mat-chip-list>
+</form>
+<div class="grid hide" *ngIf="!loading"  >
+  <div *ngIf="blogs.length == 0" class="noBlogs">
+    there is no blogs right now
+  </div>
   <mat-card class="example-card" *ngFor="let blog of getSortData()">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{
+      <div mat-card-avatar class="example-header-image" routerLink="/profile/{{blog.author.username}}" routerLinkActive="router-link-active" >
+        <img src="http://localhost:3000/{{ blog.author.image }}" alt="" />
+      </div>
+      <mat-card-title routerLink="/profile/{{blog.author.username}}">{{
         blog.author.firstName + " " + blog.author.lastName
       }}</mat-card-title>
-      <mat-card-subtitle
+      <mat-card-subtitle routerLink="/profile/{{blog.author.username}}"
         >@{{ blog.author.username }}
 
         <i
@@ -33,7 +50,7 @@
             mat-fab
             color="basic"
             class="love"
-            [class.liked] = "isLike(blog.id)"
+            [class.liked]="isLike(blog.id)"
             aria-label="Example icon button with a heart icon"
           >
             <mat-icon>favorite</mat-icon>
@@ -43,7 +60,7 @@
             color="primary"
             *ngIf="hasBlog(blog)"
             aria-label="Example icon button with a delete icon"
-            routerLink="/edit/{{blog.id}}"
+            routerLink="/edit/{{ blog.id }}"
           >
             <mat-icon>edit</mat-icon>
           </button>
@@ -57,7 +74,6 @@
           >
             <mat-icon>delete</mat-icon>
           </button>
-
         </div>
       </mat-card-actions>
     </mat-card-header>
@@ -83,3 +99,13 @@
     </mat-card-actions> -->
   </mat-card>
 </div>
+<mat-paginator
+  *ngIf="!loading"
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="getData($event)"
+  aria-label="Select page"
+>
+  
+</mat-paginator>

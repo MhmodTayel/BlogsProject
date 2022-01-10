@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlogApiService } from './../../services/blog-api.service';
 import { Blog } from './../../models/blog';
 import { UserService } from 'src/app/services/user.service';
+import {PageEvent} from '@angular/material/paginator';
 
 
 
@@ -14,16 +15,26 @@ export class HomeComponent implements OnInit {
   blogs:Blog[] = []
   followings:string[]=[]
   likes:string[]=[]
-  
+  pageEvent: PageEvent= new PageEvent();
+  length = 0;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 20, 50];
   hideFollow:boolean = true
-
-
+  loading:boolean=true
+  tags:any[]=[]
   constructor(private _blogApiService:BlogApiService,private _userService:UserService) { }
 
   ngOnInit(): void {
-    this._blogApiService.get('/').subscribe((res:any)=>{
+
+
+    this._blogApiService.get('/length').subscribe((res:any)=>this.length = res.length)
+
+    this._blogApiService.get(`/?pageIndex=${this.pageEvent.pageIndex}&pageSize=${this.pageEvent.pageSize}`).subscribe((res:any)=>{
       this.blogs = res
       console.log(res)
+      setTimeout(() => {
+      this.loading=false
+      }, 200);
       const token:any = localStorage.getItem('token')
       const currentUserId = JSON.parse(atob(token.split('.')[1]))._id.toString()
       this._userService.getFollowing(currentUserId).subscribe((res:any)=>{
@@ -35,6 +46,13 @@ export class HomeComponent implements OnInit {
         
       })
     },()=>{})
+
+    this._blogApiService.get('/get/tags').subscribe((res:any)=> {
+      res.forEach((item: any)=> this.tags.push(item.tags)); 
+      let tempArr = this.tags.reduce((a, b) => [...a, ...b], []);
+      this.tags = [...new Set(tempArr)];
+      console.log(this.tags);
+    })
   }
   checkLogging(){
     const token = localStorage.getItem('token')
@@ -52,6 +70,13 @@ export class HomeComponent implements OnInit {
     return this.likes.some(blogId=> blogId == id)
   }
   
+  getData(event:PageEvent){
+    this.pageEvent = event
+    console.log(this.pageEvent )
+    this._blogApiService.get(`/?pageIndex=${this.pageEvent.pageIndex}&pageSize=${this.pageEvent.pageSize}`).subscribe((res:any)=>{
+      this.blogs= res
+    })
+  }
   /*
     checkFollow(blog:Blog){ 
     let following:any[]=[]
@@ -85,7 +110,13 @@ export class HomeComponent implements OnInit {
     this._userService.follow(currentUser,_id).subscribe((res)=>{console.log(res)})
   }
 
-  
+  search(search:string){
+    this._blogApiService.getByTitle(`/search/title?title=${search}`).subscribe((res: any)=>{
+      console.log(res);
+      this.blogs = res;
+      return this.blogs.filter(item=> item.title== search)
+    });
+  }
 
 
 
@@ -106,6 +137,12 @@ export class HomeComponent implements OnInit {
 
   }
 
+  getBlogsByTag(tag:string){
+    this._blogApiService.get(`/getBlogs/${tag}`).subscribe((res:any)=>{
+      this.blogs = res
+    })
+
+  }
 
   deleteBlog(id:any){
     this._blogApiService.delete(id).subscribe((res)=>{
@@ -113,20 +150,16 @@ export class HomeComponent implements OnInit {
     },()=>{})
   }
 
-
-
-
-
-
-
-
-
-
-
   getSortData() {
     return this.blogs.sort((a, b) => {
       return <any>new Date(b.createdAt) - <any>new Date(a.createdAt);
     });
   }
-
+  
+    setPageSizeOptions(setPageSizeOptionsInput: string) {
+      if (setPageSizeOptionsInput) {
+        this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+      
+      }
+    }
 }

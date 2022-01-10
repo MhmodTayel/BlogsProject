@@ -15,8 +15,20 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private _userService:UserService,private _snackBar: MatSnackBar,private router: Router ) { }
 
   loginForm:FormGroup = this.fb.group({
-    username: ['',Validators.required],
-    password: ['',Validators.required],
+    username: ['',  [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(20),
+      Validators.pattern(
+        /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/
+      ),
+    ],],
+    password: ['', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(20),
+      Validators.pattern(/\w{8,20}$/),
+    ]],
 })
 
   hide = true;
@@ -26,16 +38,20 @@ export class LoginComponent implements OnInit {
   successSnackBar() {
     this._snackBar.open('You logged in successfuly','ok', {
       duration: this.durationInSeconds * 1000,
+      panelClass: 'successCustomSnackBar'
+
     });
   }
   errorSnackBar() {
     this._snackBar.open(this.errorMsg,'ok', {
       duration: this.durationInSeconds * 1000,
+      panelClass: 'failCustomSnackBar'
     });
   }
   
 onSubmit(){
   if(this.loginForm.valid){
+    //this._hhtp.post('http://localhost:3000/api/auth/login',this.loginForm.value,{headers}).subscible((res:any)=> localStorage.setItem('token',res))
     this._userService.login(this.loginForm.value)
     .subscribe((res:any)=>
     {

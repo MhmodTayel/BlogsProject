@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   durationInSeconds = 3;
+  imagePreview: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -67,21 +68,36 @@ export class RegisterComponent implements OnInit {
         Validators.pattern(/\w{8,20}$/),
       ],
     ],
+    image:['',Validators.required]
   });
   openSnackBar() {
     this._snackBar.open('You registered successfuly', 'ok', {
       duration: this.durationInSeconds * 1000,
+      panelClass: 'successCustomSnackBar'
+
     });
   }
   errorSnackBar(username:string) {
     this._snackBar.open(`${username} already registerd`, 'ok', {
       duration: this.durationInSeconds * 1000,
+      panelClass: 'failCustomSnackBar'
+
     });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this._userService.register(this.registerForm.value).subscribe(
+      console.log(this.registerForm.value)
+      const postData = new FormData();
+      postData.append('username', this.registerForm.value.username);
+      postData.append('firstName', this.registerForm.value.firstName);
+      postData.append('lastName', this.registerForm.value.lastName);
+      postData.append('email', this.registerForm.value.email);
+      postData.append('password', this.registerForm.value.password);
+      postData.append(
+        'image',this.registerForm.value.image,this.registerForm.value.username
+      );
+      this._userService.register(postData).subscribe(
         (res: any) => {
           this.openSnackBar();
           this.router.navigate(['login']);
@@ -91,6 +107,24 @@ export class RegisterComponent implements OnInit {
     }
   }
   hide = true;
+
+  
+  onImagePicked(event: any) {
+    
+    const file = event.target.files[0];
+    
+    this.registerForm.patchValue({ image: file });
+    this.registerForm.get('image').updateValueAndValidity();
+
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+      
+    };
+    reader.readAsDataURL(file);
+    
+  }
 
   ngOnInit(): void {
     // this.registerForm.valueChanges.subscribe((res)=> {

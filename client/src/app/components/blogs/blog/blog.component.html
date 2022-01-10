@@ -4,11 +4,8 @@
       <button *ngIf="hasBlog(blog)" mat-raised-button  routerLink="/edit/{{blog.id}}">Edit Blog</button>
       <div class="mini-spacer">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image">
-            <img
-              src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-              alt=""
-            />
+          <div mat-card-avatar class="example-header-image ">
+            <img src="http://localhost:3000/{{blog.author.image}}" alt="">
           </div>
           <mat-card-title>{{
             blog.author?.firstName + " " + blog.author?.lastName

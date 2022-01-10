@@ -5,23 +5,36 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: darken($color: #eee, $amount: .1);
   }
 }
 
 .example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-  background-size: cover;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+mat-card-subtitle {
+  cursor: pointer;
 }
 
 mat-card-title {
   // max-width: 360px;
   line-height: 1.2;
+  cursor: pointer;
 }
 
 .grid {
   position: relative;
   margin: 0 auto;
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
   mat-card-actions.heart {
@@ -51,6 +64,8 @@ mat-card-header {
 }
 .mainImg {
   cursor: pointer;
+  // height: 300px;
+  object-fit: cover;
 }
 .follow {
   margin-left: 10px;
@@ -72,9 +87,7 @@ mat-card-content {
     cursor: pointer;
   }
   p {
-    // text-overflow: ellipsis;
-    // overflow: hidden;
-    // white-space: nowrap;
+    
     display: -webkit-box;
     max-width: 380px;
     -webkit-line-clamp: 3;
@@ -123,8 +136,7 @@ section {
       background: rgb(235, 38, 38);
     }
     &.love {
-
-      &.liked{
+      &.liked {
         background: rgb(235, 38, 38);
         color: #fff;
       }
@@ -146,4 +158,46 @@ section {
   button {
     transform: scale(0.7);
   }
+}
+
+.noBlogs {
+  font-size: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.example-form {
+  margin: 20px;
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+}
+.loading{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.hide{
+  animation: hide .2s;
+}
+
+@keyframes hide {
+  0%{
+    visibility: hidden;
+  }
+
+  99%{
+    visibility: hidden;
+  }
+
+  100%{
+    visibility: visible;
+  }
+  
+}
+.example-full-width {
+  width: 100%;
 }

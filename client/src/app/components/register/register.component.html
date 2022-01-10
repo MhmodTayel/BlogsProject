@@ -74,6 +74,21 @@
           </mat-hint>
           
         </mat-form-field>
+        <div>
+          <button mat-stroked-button type="button" class="imageBtn" (click)="filePicker.click()">
+            Upload Image
+          </button>
+          <input type="file" #filePicker (change)="onImagePicked($event)" />
+        </div>
+        <div
+        class="image-preview"
+        *ngIf="
+          imagePreview !== '' && imagePreview && registerForm.get('image').valid
+        "
+      >
+        <img [src]="imagePreview" mat-card-avatar [alt]="registerForm.value.title" />
+      </div>
+      
         <br />
         <mat-form-field appearance="fill" class="width-100">
           <mat-label>Email address</mat-label>

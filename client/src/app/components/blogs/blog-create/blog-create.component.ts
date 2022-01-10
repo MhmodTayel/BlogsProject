@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BlogApiService } from './../../../services/blog-api.service';
 import { LoginComponent } from './../../login/login.component';
+import {MatSnackBarConfig} from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-blog-create',
@@ -22,21 +23,24 @@ export class BlogCreateComponent {
   ) {}
 
   createForm: any = this.fb.group({
-    title: ['', Validators.required],
-    body: ['', Validators.required],
-    image: ['', [Validators.required]],
+    title: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(50)]],
+    body: ['', [Validators.required,Validators.minLength(50),Validators.maxLength(500)]],
+    image: ['', [Validators.required,]],
+    tags: [''],
   });
 
   openSnackBar() {
     this._snackBar.open('Blog created successfuly', 'ok', {
       duration: this.durationInSeconds * 1000,
+      panelClass: 'customSnackBar'
+
     });
   }
 
   onImagePicked(event: any) {
     
     const file = event.target.files[0];
-   
+    
     this.createForm.patchValue({ image: file });
     this.createForm.get('image').updateValueAndValidity();
 
@@ -47,7 +51,6 @@ export class BlogCreateComponent {
       
     };
     reader.readAsDataURL(file);
-    
   }
 
   checkLogging() {
@@ -64,10 +67,9 @@ export class BlogCreateComponent {
 
       postData.append('title', this.createForm.value.title);
       postData.append('body', this.createForm.value.body);
+      postData.append('tags', this.createForm.value.tags);
       postData.append(
-        'image',
-        this.createForm.value.image,
-        this.createForm.value.title
+        'image',this.createForm.value.image,this.createForm.value.title
       );
       this._blogApiService.create(postData).subscribe(
         (res: any) => {

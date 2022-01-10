@@ -8,6 +8,10 @@ export class UserService {
 
   constructor(private _apiService:ApiService) { }
 
+  get(username:any){
+   return this._apiService.get(`/users/profile/${username}`)
+  }
+
   register(body:object){
    return this._apiService.post('/users/register',body)
   }

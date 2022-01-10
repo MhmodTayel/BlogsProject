@@ -7,6 +7,8 @@ import { BlogCreateComponent } from './components/blogs/blog-create/blog-create.
 import { BlogComponent } from './components/blogs/blog/blog.component';
 import { FollowingComponent } from './components/following/following.component';
 import { BlogEditComponent } from './components/blogs/blog-edit/blog-edit.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path:'edit/:id',component:BlogEditComponent},
   {path:'blog/:id',component:BlogComponent},
   {path:'following',component:FollowingComponent},
+  {path:'profile/:username',component:ProfileComponent},
+  {path:'**',component:NotFoundComponent},
 ];
 
 @NgModule({
